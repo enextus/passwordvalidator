@@ -9,14 +9,14 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Main {
 
-	// здесь указывается правильный пароль
+	// the correct password is specified here
 	public static final String PASSWORD = "123";
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AtomicReference<String> inputPassword = new AtomicReference<>();
 
-		System.out.println("Введите пароль: ");
+		System.out.println("Enter password: ");
 
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		executor.submit(() -> {
@@ -27,13 +27,13 @@ public class Main {
 		try {
 			String result = executor.submit(scanner::nextLine).get(7, TimeUnit.SECONDS);
 			if (result.equals(PASSWORD)) {
-				System.out.println("Доступ разрешен.");
+				System.out.println("Access granted.");
 			} else {
-				System.out.println("Неправильный пароль. Попробуйте снова через 15 минут.");
-				Thread.sleep(1000 * 60 * 15); // ждем 15 минут
+				System.out.println("Incorrect password. Please try again in 15 minutes.");
+				Thread.sleep(1000 * 60 * 15); // wait for 15 minutes
 			}
 		} catch (TimeoutException e) {
-			System.out.println("Время истекло. Попробуйте снова.");
+			System.out.println("Timeout. Please try again.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
