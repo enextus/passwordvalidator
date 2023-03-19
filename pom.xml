@@ -46,7 +46,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>org.Input-pass.Main</mainClass>
+							<mainClass>org.Inputpass.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
