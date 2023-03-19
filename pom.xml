@@ -25,12 +25,12 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.19.0</version>
+			<version>2.20.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jetbrains</groupId>
 			<artifactId>annotations</artifactId>
-			<version>13.0</version>
+			<version>24.0.1</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
@@ -46,7 +46,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>org.Inputpass.Main</mainClass>
+							<mainClass>org.Input-pass.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
