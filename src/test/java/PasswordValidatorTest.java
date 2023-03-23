@@ -26,4 +26,10 @@ class PasswordValidatorTest {
 		PasswordValidator passwordValidator = new PasswordValidator("123");
 		assertFalse(passwordValidator.validate("null"));
 	}
+
+	@Test
+	void testToLongButRealPartPassword() {
+		PasswordValidator passwordValidator = new PasswordValidator("123");
+		assertFalse(passwordValidator.validate("123456"));
+	}
 }
