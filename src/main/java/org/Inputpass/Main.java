@@ -29,8 +29,8 @@ public class Main {
 			if (result.equals(PASSWORD)) {
 				System.out.println("Access granted.");
 			} else {
-				System.out.println("Incorrect password. Please try again in 15 minutes.");
-				Thread.sleep(1000 * 60 * 15); // wait for 15 minutes
+				System.out.println("Incorrect password. Please try again in 2 minutes.");
+				Thread.sleep(1000 * 60 * 2); // wait for 15 minutes
 			}
 		} catch (TimeoutException e) {
 			System.out.println("Timeout. Please try again.");
