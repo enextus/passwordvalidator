@@ -26,6 +26,7 @@ public class Main {
 
 		try {
 			String result = executor.submit(scanner::nextLine).get(7, TimeUnit.SECONDS);
+
 			if (result.equals(PASSWORD)) {
 				System.out.println("Access granted.");
 			} else {
