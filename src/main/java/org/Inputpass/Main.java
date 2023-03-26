@@ -7,7 +7,7 @@ public class Main {
 
 	public static final String PASSWORD = "123";
 	public static final int MAX_ATTEMPTS = 3;
-	public static final int TIMEOUT = 30;
+	public static final int TIMEOUT = 15;
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);

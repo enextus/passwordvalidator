@@ -32,4 +32,12 @@ class PasswordValidatorTest {
 		PasswordValidator passwordValidator = new PasswordValidator("123");
 		assertFalse(passwordValidator.validate("123456"));
 	}
+
+	@Test
+	void checkPassword_correctPassword_returnsTrue() {
+		PasswordChecker passwordChecker = new PasswordChecker();
+		assertTrue(passwordChecker.checkPassword("123"));
+	}
+
+
 }

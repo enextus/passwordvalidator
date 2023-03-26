@@ -2,6 +2,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class PasswordValidator {
 	private final String password;
+	public static final String PASSWORD = "123";
 
 	public PasswordValidator(@NotNull String password) {
 		this.password = password;
@@ -10,4 +11,9 @@ public class PasswordValidator {
 	public boolean validate(@NotNull String inputPassword) {
 		return password.equals(inputPassword);
 	}
+
+	public boolean validatePassword(@NotNull String inputPassword) {
+		return PASSWORD.equals(inputPassword);
+	}
+
 }
