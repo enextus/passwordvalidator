@@ -1,3 +1,5 @@
+package org.Inputpass;
+
 import org.jetbrains.annotations.NotNull;
 
 public class PasswordValidator {
@@ -12,8 +14,8 @@ public class PasswordValidator {
 		return password.equals(inputPassword);
 	}
 
-	public boolean validatePassword(@NotNull String inputPassword) {
-		return PASSWORD.equals(inputPassword);
+	public boolean validatePassword(@NotNull  String inputPassword) {
+		return inputPassword.equals(PASSWORD);
 	}
 
 }
