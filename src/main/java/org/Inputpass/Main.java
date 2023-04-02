@@ -13,10 +13,8 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 
-		int attempts = 0;
-		boolean success = false;
-		while (attempts < MAX_ATTEMPTS && !success) {
-			System.out.println("Enter password (" + (attempts + 1) + "/" + MAX_ATTEMPTS + "):");
+		for (int attempts = 1; attempts <= MAX_ATTEMPTS; attempts++) {
+			System.out.printf("Enter password (%d/%d):%n", attempts, MAX_ATTEMPTS);
 			Future<String> future = executor.submit(scanner::nextLine);
 
 			try {
@@ -24,10 +22,10 @@ public class Main {
 
 				if (inputPassword.equals(PASSWORD)) {
 					System.out.println("Access granted.");
-					success = true;
+					executor.shutdown();
+					return;
 				} else {
 					System.out.println("Incorrect password.");
-					attempts++;
 				}
 			} catch (TimeoutException e) {
 				System.out.println("Timeout. Please try again.");
@@ -37,11 +35,9 @@ public class Main {
 			}
 		}
 
-		if (!success) {
-			System.out.println("Program terminated.");
-		}
-
+		System.out.println("Program terminated.");
 		executor.shutdown();
+
 	}
 
 }
