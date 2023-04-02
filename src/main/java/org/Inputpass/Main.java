@@ -18,7 +18,7 @@ public class Main {
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 
 		for (int attempts = 1; attempts <= MAX_ATTEMPTS; attempts++) {
-			System.out.printf("Enter password (%d/%d):%n", attempts, MAX_ATTEMPTS);
+			System.out.printf("Enter your password and press enter | attempts: %d/%d %n", attempts, MAX_ATTEMPTS);
 			Future<String> future = executor.submit(() -> {
 				char[] passwordChars = console.readPassword();
 				return new String(passwordChars);
