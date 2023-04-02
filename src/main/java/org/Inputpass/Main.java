@@ -1,5 +1,6 @@
 package org.Inputpass;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.*;
 
@@ -15,12 +16,21 @@ public class Main {
 
 		for (int attempts = 1; attempts <= MAX_ATTEMPTS; attempts++) {
 			System.out.printf("Enter password (%d/%d):%n", attempts, MAX_ATTEMPTS);
-			Future<String> future = executor.submit(scanner::nextLine);
+			Future<String> future = executor.submit(() -> {
+				try {
+					while (System.in.available() == 0) {
+						Thread.sleep(100);
+					}
+					return scanner.nextLine();
+				} catch (IOException | InterruptedException e) {
+					return null;
+				}
+			});
 
 			try {
 				String inputPassword = future.get(TIMEOUT, TimeUnit.SECONDS);
 
-				if (inputPassword.equals(PASSWORD)) {
+				if (PASSWORD.equals(inputPassword)) {
 					System.out.println("Access granted.");
 					executor.shutdown();
 					return;
@@ -29,6 +39,7 @@ public class Main {
 				}
 			} catch (TimeoutException e) {
 				System.out.println("Timeout. Please try again.");
+				future.cancel(true);
 				break;
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -37,7 +48,5 @@ public class Main {
 
 		System.out.println("Program terminated.");
 		executor.shutdown();
-
 	}
-
 }
