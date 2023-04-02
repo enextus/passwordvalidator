@@ -17,7 +17,6 @@ public class Main {
 		}
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 
-		outerLoop:
 		for (int attempts = 1; attempts <= MAX_ATTEMPTS; attempts++) {
 			System.out.printf("Enter password (%d/%d):%n", attempts, MAX_ATTEMPTS);
 			Future<String> future = executor.submit(() -> {
@@ -36,10 +35,9 @@ public class Main {
 					System.out.println("Incorrect password.");
 				}
 			} catch (TimeoutException e) {
-				System.out.println("Timeout. Please try again.");
-				future.cancel(true);
-				System.out.println();
-				continue outerLoop;
+				System.out.println("Timeout. Program terminated.");
+				executor.shutdownNow();
+				System.exit(2); // emergency program termination with exit code 2.
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -48,4 +46,5 @@ public class Main {
 		System.out.println("Program terminated.");
 		executor.shutdown();
 	}
+
 }
