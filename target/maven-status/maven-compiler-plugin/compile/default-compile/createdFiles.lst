@@ -1,3 +1,3 @@
-org\Inputpass\AKSValidation.class
-org\Inputpass\MillerRabinValidation.class
-org\Inputpass\Main.class
+org/Inputpass/AKSValidation.class
+org/Inputpass/Main.class
+org/Inputpass/MillerRabinValidation.class
