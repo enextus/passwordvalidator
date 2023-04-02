@@ -9,17 +9,21 @@ public class Main {
 	public static final String PASSWORD = "123";
 	public static final int MAX_ATTEMPTS = 3;
 	public static final int TIMEOUT = 15;
+	public static final int SLEEP = 50;
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 
 		for (int attempts = 1; attempts <= MAX_ATTEMPTS; attempts++) {
+
 			System.out.printf("Enter password (%d/%d):%n", attempts, MAX_ATTEMPTS);
+
 			Future<String> future = executor.submit(() -> {
 				try {
 					while (System.in.available() == 0) {
-						Thread.sleep(100);
+						Thread.sleep(SLEEP);
 					}
 					return scanner.nextLine();
 				} catch (IOException | InterruptedException e) {
@@ -49,4 +53,5 @@ public class Main {
 		System.out.println("Program terminated.");
 		executor.shutdown();
 	}
+
 }
